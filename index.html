@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Кібербезпекова симуляція</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: monospace;
+    background: black;
+    color: #00ff00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Старт */
+#start {
+    text-align: center;
+    color: white;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Екран “хакерського скану” */
+#scan {
+    display: none;
+    text-align: left;
+    width: 600px;
+}
+
+/* Фінальний екран */
+#hack {
+    display: none;
+    text-align: center;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% {opacity: 1;}
+    50% {opacity: 0.7;}
+    100% {opacity: 1;}
+}
+
+.big {
+    font-size: 45px;
+    color: red;
+}
+
+.log {
+    white-space: pre-line;
+    margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- СТАРТ -->
+<div id="start">
+    <h2>🎯 Секретний доступ до системи</h2>
+    <button onclick="startSim()">Відкрити</button>
+</div>
+
+<!-- СКАН -->
+<div id="scan">
+    <h3>🔍 Перевірка системи...</h3>
+    <div id="log" class="log"></div>
+</div>
+
+<!-- “ХАК” -->
+<div id="hack">
+    <div class="big">⚠️ СИМУЛЯЦІЯ АТАКИ ⚠️</div>
+    <p>Це навчальний приклад фішингу та соціальної інженерії</p>
+    <p style="color:orange;">Насправді ваші дані в безпеці</p>
+</div>
+
+<script>
+function typeLog(text, i = 0) {
+    if (i < text.length) {
+        document.getElementById("log").innerHTML += text[i];
+        setTimeout(() => typeLog(text, i + 1), 30);
+    }
+}
+
+function startSim() {
+    document.getElementById("start").style.display = "none";
+    document.getElementById("scan").style.display = "block";
+
+    let logText =
+`[+] Підключення до системи...
+[+] Перевірка IP адреси...
+[+] Аналіз пристрою...
+[!] Виявлено підозрілу активність
+[!] Імітація фішингової атаки запущена
+`;
+
+    typeLog(logText);
+
+    setTimeout(() => {
+        document.getElementById("scan").style.display = "none";
+        document.getElementById("hack").style.display = "block";
+    }, 6000);
+}
+</script>
+
+</body>
+</html>
